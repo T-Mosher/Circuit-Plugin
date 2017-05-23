@@ -1,0 +1,214 @@
+/*
+
+Theme Name:     BandChild
+
+Theme URI:      http: //www.zenithexhibits.com/
+
+Description:    Child theme for BandParent theme 
+
+Author:         Ed Bejarana
+
+Author URI:     http: //www.zenithexhibits.com/wordpress-themes/
+
+Template:       BandParent
+
+Version:        1.0
+
+*/
+
+
+
+@import url("../BandParent/style.css");
+
+
+
+/* Fix scorlling bullet lists issue */
+
+.art-post ul li, .art-post ol ul li { overflow: visible; }
+
+
+
+/* Change Contact Form 7 Check box listings */
+
+span.wpcf7-list-item { display: block; }
+
+
+
+/* Pull Right Standout Section */
+
+.standOutRight {
+
+	width: 280px;
+
+	float: right;
+
+	padding: 0 10px;
+
+	border: 1px solid #A7D49B;
+
+	clear: right;
+
+	}
+
+	
+
+/* CSS settings for header widget zone */
+
+div.art-header-widget-area { 
+
+	position: absolute; 
+
+	margin-top: 40px; 
+
+	margin-left: 575px;
+
+	width: 275px;
+
+	overflow: hidden; 
+
+	} 
+
+
+
+div.art-header-widget-text-area { 
+
+	position: absolute; 
+
+	margin-top: 20px; 
+
+	margin-left: 0px;
+
+	width: 270px;
+
+	overflow: hidden; 
+
+	} 
+
+
+
+div.art-header-widget-search-area {
+
+	position: absolute; 
+
+	margin-top: 0px; 
+
+	margin-left: 10px;
+
+	width: 270px;
+
+	overflow: hidden; 
+
+	} 
+
+	
+
+/* Created div zones for home page layout */	
+
+.boxContainer {
+
+	width: 100%;
+
+	margin: 0 auto;
+
+	border-top: 1px #000 solid;
+
+	border-bottom: 1px #000 solid;
+
+	overflow: hidden;
+
+	}
+
+
+
+.oneHalfBox {
+
+	float: left;
+
+	width: 45%;
+
+	margin: 0 5px;
+
+	padding: 0 5px;
+
+	}
+
+	
+
+.oneHalfBoxLL {
+
+	float: left;
+
+	width: 45%;
+
+	margin: 0 5px;
+
+	padding: 0 5px;
+
+	border-left: 1px #000000 solid;
+
+	}
+
+	
+
+.oneThirdBox {
+
+	float: left;
+
+	width: 30%;
+
+	margin: 0 3px;
+
+	padding: 0 5px;
+
+	}
+
+	
+
+.oneThirdBoxLL {
+
+	float: left;
+
+	width: 30%;
+
+	margin: 0 3px;
+
+	padding: 0 5px;
+
+	border-left: 1px #000000 solid;
+
+	}
+
+	
+
+table{vertical-align:middle;}
+
+
+
+/* Page layout for school units */
+
+.schoolUnitListing {
+
+	margin: 10px;
+
+	}
+
+
+
+.schoolUnitListing h1 {
+
+	font-size: 18px;
+
+	border-bottom: 1px solid #000;
+
+	margin-bottom: 10px;
+
+	}
+
+	
+
+.schoolUnitTable {
+
+	margin: 0 10px;
+
+	}
+

@@ -1,0 +1,46 @@
+[25-Oct-2013 01:57:22 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/index.php on line 1
+[17-May-2014 02:32:25 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:35:07 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:35:53 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:36:12 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:36:49 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:37:17 Europe/Helsinki] PHP Parse error:  syntax error, unexpected '<' in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 8
+[17-May-2014 02:38:49 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 8
+[17-May-2014 02:39:25 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 8
+[17-May-2014 02:39:36 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 8
+[17-May-2014 02:39:41 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 8
+[17-May-2014 02:44:26 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 10
+[17-May-2014 02:44:46 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 10
+[17-May-2014 02:44:52 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 10
+[17-May-2014 02:47:50 Europe/Helsinki] PHP Parse error:  syntax error, unexpected '<' in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:48:02 Europe/Helsinki] PHP Parse error:  syntax error, unexpected '<' in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 7
+[17-May-2014 02:48:59 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 12
+[17-May-2014 02:49:30 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 12
+[17-May-2014 02:49:42 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 12
+[17-May-2014 02:53:50 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 12
+[17-May-2014 03:18:38 Europe/Helsinki] PHP Parse error:  syntax error, unexpected '$cd' (T_VARIABLE), expecting '(' in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 10
+[17-May-2014 03:19:35 Europe/Helsinki] PHP Parse error:  syntax error, unexpected '$cd' (T_VARIABLE), expecting '(' in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 10
+[17-May-2014 03:20:20 Europe/Helsinki] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 14
+[17-May-2014 03:20:37 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 23
+[17-May-2014 03:21:17 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[17-May-2014 03:21:24 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[17-May-2014 03:21:52 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[17-May-2014 03:47:09 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[17-May-2014 03:47:18 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[17-May-2014 07:24:06 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[17-May-2014 23:46:48 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[18-May-2014 21:16:21 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[18-May-2014 21:16:29 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[19-May-2014 00:14:26 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[19-May-2014 00:14:34 Europe/Helsinki] PHP Fatal error:  Call to undefined function get_header() in /home/nwapa/public_html/wp-content/themes/BandParent/bp-custom-page.php on line 24
+[31-May-2015 06:49:29 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home1/nwapa/public_html/wp-content/themes/BandParent/index.php on line 1
+[08-Dec-2015 09:09:57 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home1/nwapa/public_html/wp-content/themes/BandParent/index.php on line 1
+[01-Mar-2016 14:30:39 America/Chicago] PHP Fatal error:  Call to undefined function language_attributes() in /home1/nwapa/public_html/wp-content/themes/BandParent/header.php on line 2
+[01-Mar-2016 14:30:40 America/Chicago] PHP Fatal error:  Call to undefined function load_theme_textdomain() in /home1/nwapa/public_html/wp-content/themes/BandParent/functions.php on line 10
+[01-Mar-2016 14:30:40 America/Chicago] PHP Fatal error:  Call to undefined function get_sidebar() in /home1/nwapa/public_html/wp-content/themes/BandParent/footer.php on line 3
+[01-Mar-2016 14:30:42 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home1/nwapa/public_html/wp-content/themes/BandParent/archive.php on line 14
+[14-Mar-2016 01:51:51 America/Chicago] PHP Fatal error:  Call to undefined function load_theme_textdomain() in /home1/nwapa/public_html/wp-content/themes/BandParent/functions.php on line 10
+[14-Mar-2016 01:51:51 America/Chicago] PHP Fatal error:  Call to undefined function get_sidebar() in /home1/nwapa/public_html/wp-content/themes/BandParent/footer.php on line 3
+[20-Mar-2016 23:53:28 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home1/nwapa/public_html/wp-content/themes/BandParent/index.php on line 1
+[09-Apr-2016 18:53:33 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home1/nwapa/public_html/wp-content/themes/BandParent/index.php on line 1
+[09-Apr-2016 23:49:59 America/Chicago] PHP Fatal error:  Call to undefined function get_header() in /home1/nwapa/public_html/wp-content/themes/BandParent/index.php on line 1
