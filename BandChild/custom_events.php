@@ -11,7 +11,8 @@ get_header();
 
 echo '<br>';
 echo '<h3>This page displays all scheduled events.</h3>';
-echo '<p>To enter an event, use your unit registration link</p>';
+echo '<p>To enter an event, use your unit registration link.</p>';
+echo '<p>To view the event and entry list, click on the Event Name link.</p>';
 echo '<br>';
 
 $query = "SELECT * FROM events WHERE event_active = 'T' ORDER BY event_date ASC";
@@ -36,7 +37,7 @@ if($response) {
 		// populate each row of the event summary table
 		echo '<tr>';
 		echo '<td>' . $row['event_date'] . '</td>';
-		echo '<td>' . $row['event_name'] . '</td>';
+		echo '<td>' . '<a href="'.$row['event_link'].'">'.$row['event_name'] . '</a></td>';
 		echo '<td>' . $row['event_location'] . '</td>';
 		echo '<td>' . $row['event_host'] . '</td>';
 		//echo '<td>' . $row['event_capacity'] . '</td>';
@@ -45,6 +46,7 @@ if($response) {
  		echo '</tr>';
 	}
 	echo '</table>';
+	echo '<br><br>';
 } else {
 	echo "Couldn't issue database query<br><br>";
 	//print_r($response);
