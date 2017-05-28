@@ -76,7 +76,7 @@
 	
 	global $wpdb;
 	
-	echo "--- Will have event entries here ---<br>";
+	echo "--- Here are the event entries ---<br>";
 	//echo "-- get get_class<br>";
 	//print_r(get_class($this));
 	//echo "<br>...end...<br>";
@@ -148,7 +148,7 @@
 	//$query = "SELECT * FROM events WHERE (event_active = 'T' AND event_type = 'Band') ORDER BY event_date ASC";
 	//$query = "SELECT * FROM events WHERE (event_active = 'T' AND (find_in_set(strtoupper($unit_type), event_type) > 0)) ORDER BY event_date ASC";
 	$unit_type_uc = strtoupper($unit_type);
-	$query = "SELECT * FROM events WHERE find_in_set('".$unit_type_uc."', event_type) > 0";
+	$query = "SELECT * FROM events WHERE find_in_set('".$unit_type_uc."', event_type) > 0 AND event_active = 'T'";
 	// NOTE: also need to do this for other event types...
 	
 	$response = $wpdb->get_results($query, ARRAY_A);
@@ -159,6 +159,9 @@
 	
 	//print_r($response);
 	if (!empty($response)) {
+		// start a table
+		echo "<table>";
+		echo "<tr><th>chk</th><th>Date</th><th>Event Name</th><th>Type</th></tr>";
 		foreach($response as $row) {	
 			//echo 'key:'.$row['event_id'].' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_type'].'<br>';
 			// show whether this unit has entered this event
@@ -168,22 +171,29 @@
 			// note if "array_search()" returns index 0, it is also bool FALSE
 			// so use "if_int()", not '=='
 			$yep = array_search($eid, $event_list);
-			
+			// start a new row, and start the first cell
+			echo "<tr><td>";
 			//if ($yep == FALSE) {
 			if (!is_int($yep)) {
 				//echo "event entered? False<br>";
 				$tag = 'input type="checkbox" name="eids[]" value = '.$eid;
-				echo $tag.'<br>';
+				//echo $tag.'<br>';
 				echo '<'.$tag.'>';
 			
 			}else {
 				//echo "event entered? True<br>";
 				$tag = 'input type="checkbox" name="eids[]" value = '.$eid.' checked';
-				echo $tag.'<br>';
+				//echo $tag.'<br>';
 				echo '<'.$tag.'>';
 			}
-			echo $eid.' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_type'].'<br>';			
-		}	
+			// close the first cell
+			echo "</td>";
+			// add the other cells and end the row
+			echo "<td>".$row['event_date']."</td><td>".$row['event_name']."</td><td>".$row['event_type']."</tr>";			
+			// plain text output
+			//echo $eid.' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_type'].'<br>';			
+		}
+		echo "</table>";
 	} else {
 		echo 'Sorry, found no events of this type.<br>';
 	}
