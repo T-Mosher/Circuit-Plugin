@@ -70,38 +70,24 @@
   <?php
 	echo "--- pdb-record-custom template starts here ---<br>";
 	
+	echo "<h3>--------------------------<br>";
+	echo "Select your events below<br>then click on 'Save Events' button<br>";
+	echo "at the page bottom.<br>";
+	echo "</h3>";
 	// this seems like a convenient dirty method for getting the private id
 	// really should be able to do something better
 	$priv_id = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : false;
 	
 	global $wpdb;
 	
-	echo "--- Here are the event entries ---<br>";
-	//echo "-- get get_class<br>";
-	//print_r(get_class($this));
-	//echo "<br>...end...<br>";
-	//echo "-- get all class methods<br>";
-	//foreach(get_class_methods($this) as $t) {
-	//	print_r($t);
-	//	echo "<br>";
-	//}
-	//echo "...end...<br>";
-	
-	//echo "-- get the object variables<br>";
-	//print_r(get_object_vars($this));
-	//echo "<br>";
-	
-	//echo "-- get the_record";
-	// Note: this doesn't work...
-	//print_r($this->the_record());
-	//echo "<br>... end ...<br>";
+	//echo "--- Here are the event entries ---<br>";
 	
 	//if (isset($participant_id)) {
 	//	echo "Participant ID is set<br>";
 	//}
 	
 	$part_id = $this->participant_id;
-	echo "The participant ID is:".$part_id."<br>";
+	//echo "The participant ID is:".$part_id."<br>";
 
 	// query the hjk_participants_database table directly for this participant, 
 	//    so we can get the unit_type
@@ -109,7 +95,7 @@
 	$response = $wpdb->get_results($query, ARRAY_A);
 	foreach ($response as $row){
 		// this really needs some error checking...
-		echo "unit type is: ".$row['unit_type']."<br>";
+		//echo "unit type is: ".$row['unit_type']."<br>";
 		$unit_type = $row['unit_type'];
 	}
 
@@ -124,19 +110,19 @@
 	//print_r($response);
 	if (!empty($response)) {
 		foreach($response as $row) {	
-			echo 'Event:'.$row['what_event'].' Participant:'.$row['what_participant'].'<br>';
+			//echo 'Event:'.$row['what_event'].' Participant:'.$row['what_participant'].'<br>';
 			// built an array with this unit's events by pushing new elements
 			$event_list[] = $row['what_event'];
 		}	
 	} else {
-		echo 'Sorry, no event entries found for this unit.<br>';
+		echo 'No event entries found for this unit.<br>';
 	}	
 	
 	// DEBUG
-	var_dump($event_list);
-	echo '<br>';
-	var_dump(strtoupper($unit_type));
-	echo '<br>';
+	//var_dump($event_list);
+	//echo '<br>';
+	//var_dump(strtoupper($unit_type));
+	//echo '<br>';
 	
 	// create a query for all active events for this unit type
 
@@ -148,11 +134,11 @@
 	//$query = "SELECT * FROM events WHERE (event_active = 'T' AND event_type = 'Band') ORDER BY event_date ASC";
 	//$query = "SELECT * FROM events WHERE (event_active = 'T' AND (find_in_set(strtoupper($unit_type), event_type) > 0)) ORDER BY event_date ASC";
 	$unit_type_uc = strtoupper($unit_type);
-	$query = "SELECT * FROM events WHERE find_in_set('".$unit_type_uc."', event_type) > 0 AND event_active = 'T'";
+	$query = "SELECT * FROM events WHERE find_in_set('".$unit_type_uc."', event_type) > 0 AND event_active = 'T' ORDER BY event_date";
 	// NOTE: also need to do this for other event types...
 	
 	$response = $wpdb->get_results($query, ARRAY_A);
-	echo "the private id is:".$priv_id.'<br>';
+	//echo "the private id is:".$priv_id.'<br>';
 	
 	// start the HTML submit form -----------------------------------
 	echo '<form action="/add-entries/?pid='.$priv_id.'" method="post">';
@@ -161,7 +147,7 @@
 	if (!empty($response)) {
 		// start a table
 		echo "<table>";
-		echo "<tr><th>chk</th><th>Date</th><th>Event Name</th><th>Type</th></tr>";
+		echo "<tr><th></th><th>Date</th><th>Event Name</th><th>Location</th></tr>";
 		foreach($response as $row) {	
 			//echo 'key:'.$row['event_id'].' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_type'].'<br>';
 			// show whether this unit has entered this event
@@ -189,15 +175,16 @@
 			// close the first cell
 			echo "</td>";
 			// add the other cells and end the row
-			echo "<td>".$row['event_date']."</td><td>".$row['event_name']."</td><td>".$row['event_type']."</tr>";			
+			echo "<td>".$row['event_date']."</td><td>".$row['event_name']."</td><td>".$row['event_location']."</tr>";			
 			// plain text output
-			//echo $eid.' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_type'].'<br>';			
+			//echo $eid.' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_location'].'<br>';			
 		}
 		echo "</table>";
 	} else {
 		echo 'Sorry, found no events of this type.<br>';
 	}
-	echo '<input type="submit" name="submit" value="Sendo"/>'; 
+	// note: do not change the value for the submit button - it is also hard-coded into custom-add-entries.php
+	echo '<input type="submit" name="submit" value="Save Events"/>'; 
 	echo '</form>';
 	// end of form -------------------------------------------------------
 	
