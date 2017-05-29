@@ -58,9 +58,10 @@ Balance due:<br>
 	$pri_event = 0;
 	// for 2016 Fall, no membership fee, all events $325 ($75 goes to to NWAPA)
 	// for 2015/16 Winter, no membership fee, all events $225
-	define ("PREM_COST", 325.00);	// entry fee for a premiere event
-	define ("REG_COST", 325.00);	// entry fee for a regular season event
-	define ("CHAMP_COST", 325.00);	// entry fee for the Championships event
+	// fee is $250 for Winter 2017 
+	define ("PREM_COST", 250.00);	// entry fee for a premiere event
+	define ("REG_COST", 250.00);	// entry fee for a regular season event
+	define ("CHAMP_COST", 250.00);	// entry fee for the Championships event
 	define ("MEM_FEE", 0.00);	// fee for membership
 
 	$cmd = $_POST['eud_cmnd'];
@@ -86,6 +87,7 @@ Balance due:<br>
 	$eud_fields = Participants_Db::get_participant($eud_id);
 	
 	$eud_unit_name = $eud_fields["unit_name"];
+	//var_dump($eud_fields);
 	
 	// create an empty array of event text labels
 	$event_array = array();
@@ -96,37 +98,37 @@ Balance due:<br>
 	// Typically     Only one premier event for Fall
 	if ($eud_fields["event_1"] == "Yes") {
 		// this is usually $prem_event for fall and winter
-		$std_event += 1;
-		$event_array[] = "McKenzie Classic (Evergreen)";
+		$prem_event += 1;
+		$event_array[] = "Guard Premier @ Tigard";
 	}
 	if ($eud_fields["event_2"] == "Yes") {
 		// this is $std_event for Fall, and $prem_event for winter
-		$std_event += 1;
-		$event_array[] = "Pac. Coast Invit. (Sprague)";
+		$prem_event += 1;
+		$event_array[] = "Percussion Premier @ Glencoe";
 	}
 	if ($eud_fields["event_3"] == "Yes") {
 		$std_event += 1;
-		$event_array[] = "Music in Motion (Kamiak)";
+		$event_array[] = "Regular Show @ St. Helens ";
 	}
 	if ($eud_fields["event_4"] == "Yes") {
 		$std_event += 1;
-		$event_array[] = "Century Showcase";
+		$event_array[] = "Regular Show @ Evergreen";
 	}
 	if ($eud_fields["event_5"] == "Yes") {
-		$std_event += 1;
-		$event_array[] = "Pride of the Northwest (Grants Pass)";
+		$pri_event += 1;
+		$event_array[] = "Guard Championships @ Liberty";
 	}
 	if ($eud_fields["event_6"] == "Yes") {
-		$std_event += 1;
-		$event_array[] = "Spectacle of Sound (Southridge)";
+		$pri_event += 1;
+		$event_array[] = "Percussion/Winds Champinoships @ West Salem";
 	}
 	if ($eud_fields["event_7"] == "Yes") {
-		$std_event += 1;
-		$event_array[] = "Sunset Classic";
+		$std_event += 0;
+		$event_array[] = "Event 7";
 	}
 	if ($eud_fields["event_8"] == "Yes") {
-		$pri_event += 1;
-		$event_array[] = "Championships";
+		$pri_event += 0;
+		$event_array[] = "Event 8";
 	}
 	if ($eud_fields["event_9"] == "Yes") {
 		$std_event += 0;
@@ -146,6 +148,7 @@ Balance due:<br>
 		
 	// echo "<br>Totals: ".$std_event." ".$pri_event,"<br>";
 	
+	
 	// retrieve the balance - typ. surety bond or show host credit
 	if (isset($eud_fields["balance"])) {
 		//echo "found a balance:".$eud_fields["balance"]."<br>";
@@ -154,6 +157,18 @@ Balance due:<br>
 		//echo "no balance<br>";
 		$eud_credit = 0;
 	}
+	
+	// exhibition units pay no fee, so credit them their payment amount
+	$class = $eud_fields['classification'];
+	
+	//var_dump($class);
+	//echo '<br>';
+	
+	if (stristr($class, 'exhib') !== FALSE) {
+		echo '<br>Note: Exhibition units pay no event fees<br>';
+		// note- quick and dirty, only works for 2017 winter fees
+		$eud_credit = ($prem_event + $std_event + $pri_event) * REG_COST;
+		}
 	
 	// retrieve the total previously paid
 	if (isset($eud_fields["paid_amt"])) {
@@ -218,7 +233,7 @@ Balance due:<br>
 		<td><b>Subtotal</b></td><td></td><td></td><td><?php echo "$ ".$eud_subtotal?></td>
 	</tr>
 	<tr>
-		<td>Previous Payments<br>  <?php echo $eud_paymentdate?></td><td></td><td></td><td><?php echo "- $ ".$eud_paidamt?></td>
+		<td>Previous Payments<br>  <?php echo $eud_paymentdate?></td><td></td><td></td><td><?php echo " $ ".$eud_paidamt?></td>
 	</tr>
 	<tr>
 		<td>Credit</td><td></td><td></td><td><?php echo "- $ ".$eud_credit?></td>
@@ -245,6 +260,7 @@ Balance due:<br>
 	<h3>Official use only: </h3>
 	<p>Date payment received: ________________</p>
 	<p>Check number: ____________</p>
+	<p>Invoice Rev. 3</p> 
 	<!--<?php
 	echo "Membership fee:".$member_fee."<br>";
 	echo "Event Total:".$eud_total."<br>";
