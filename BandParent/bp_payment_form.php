@@ -1,6 +1,9 @@
 <?php
 /*
 Template Name: BP Payment Form
+May 2017:
+Reads the entries from the db table.
+Reads the event fees from the events db table.
 */
 ?>
 <?php $eud_due = 0;?>
@@ -51,11 +54,16 @@ Balance due:<br>
 <!-- end of main -->
 
 <?php function bppf_display_invoice() {
+	global $wpdb;
 	global $eud_due;
 	global $eud_unit_name;
 	$prem_event = 0;
 	$std_event = 0;
 	$pri_event = 0;
+	
+	// for May 2017 update
+	$fee_total = 0;
+	
 	// for 2016 Fall, no membership fee, all events $325 ($75 goes to to NWAPA)
 	// for 2015/16 Winter, no membership fee, all events $225
 	// fee is $250 for Winter 2017 
@@ -63,26 +71,111 @@ Balance due:<br>
 	define ("REG_COST", 250.00);	// entry fee for a regular season event
 	define ("CHAMP_COST", 250.00);	// entry fee for the Championships event
 	define ("MEM_FEE", 0.00);	// fee for membership
+	
+	// defines for $event_array
+	define ("NAME", 0);			// name of event
+	define ("FEE", 1);			// event entry fee
 
-	$cmd = $_POST['eud_cmnd'];
+	//$cmd = $_POST['eud_cmnd'];
 	
+	// get the participant id
 	if (!isset($participant_id)) {
-	
-	// if there is no id in the request, use the default record
+		// if there is no id in the request, use the default record
 		$participant_id = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : false;
 	}
 
-	/* if (!isset($participant_id)) {
-		// if there is no id in the request, use the default record
-		echo "Participant ID isn't defined.<br>";
-	} else {
-		echo "Participant ID is:".$participant_id."<br>";
-	} */
+	// does the $participant_id need more error checking?
 	
 	$eud_id = Participants_Db::get_participant_id($participant_id);
-	/* comment this out */
-	/* echo "id:".$eud_id."<br>"; */
 
+	// DEBUG
+	//echo '<br>participant_id is ';
+	//var_dump($eud_id);
+	//echo '<br>';
+
+	// query the entries db and get a list of all events for this unit
+	// note: this query includes previous events which are now inactive
+	$query = "SELECT what_event, entry_type FROM entries WHERE what_participant = ".$eud_id;
+	$entry_response = $wpdb->get_results($query, ARRAY_A);
+
+	// query the events database for all active events
+	$query = "SELECT event_id, event_name, event_entry_fee FROM events WHERE event_active = 'T' ORDER BY event_date";
+	$event_response = $wpdb->get_results($query, ARRAY_A);
+	
+	// build the events into an associative array with event_id as the key, with name and fee as data
+	$event_array = array();
+	if (!empty($event_response)) {
+		foreach($event_response as $row) {	
+			//echo 'Event:'.$row['what_event'].' Participant:'.$row['what_participant'].'<br>';
+			// built an array with this unit's events by pushing new elements
+			$event_array[$row['event_id']][NAME] = $row['event_name'];
+			$event_array[$row['event_id']][FEE] = $row['event_entry_fee'];
+			//var_dump($row);
+			//echo '<br>';
+			//$event_array[] = ($row['event_id'] => $row['event_entry_fee']);
+		}
+	} else {
+		echo 'No event entries found for this unit.<br>';
+	}
+	
+	// DEBUG
+	echo '<br>';
+	var_dump($event_array);
+	echo '<br>';
+	
+	//echo 'Test Array<br>';
+	//$test_array = array();
+	//$test_array['15'][0] = 100;
+	//$test_array['15'][1] = 'Some Name';
+	//$test_array['15'][2] = 'Some Location';
+	//$test_array['17'] = 101;
+	//$test_array['18'] = 102;
+	
+	//print_r(count($test_array));
+	//echo '<br>';
+	
+	//echo 'test array [1] = ';
+	//var_dump($test_array);
+	
+	echo '<br>';
+	var_dump($event_array['17']);
+	echo '<br>';
+		
+	var_dump(array_key_exists(17,$event_array));
+	//var_dump(array_keys($event_array));
+	echo '<br>';
+	
+	echo 'here are my events<br>';
+	var_dump($entry_response);
+	echo '<br>';
+	
+	// for each entry, check if it is for an active event, total the fee, and 
+	//   add a row to the HTML fee summary table
+	
+	//echo '<table>';
+	
+	if (!empty($entry_response)) {
+		foreach($entry_response as $entry) {
+			if(array_key_exists($entry['what_event'],$event_array)) {
+				echo 'Found an active event<br>';
+				// also need to check if the entry_type is "COMPETING"
+				// add this entry fee to the total
+				$ev_name = $event_array[$entry['what_event']][NAME];
+				echo 'event:'.$ev_name.'<br>';
+				$ev_fee = $event_array[$entry['what_event']][FEE];
+				echo 'fee:'.$ev_fee.'<br>';
+				$fee_total = $fee_total + $ev_fee;
+			} else {
+				echo 'This event is not active<br>';
+			}
+	
+	
+		}
+	}
+	
+	echo 'total fee:'.$fee_total.'<br>';
+	echo '<br>';
+	
 	// get all of the fields of this record into an indexable array
 	$eud_fields = Participants_Db::get_participant($eud_id);
 	
