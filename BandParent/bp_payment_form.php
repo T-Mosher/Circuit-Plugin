@@ -82,11 +82,11 @@ Balance due:<br>
 	// set up the invoice header
 	echo '<h2>NWAPA Fee Payment Invoice</h2>';
 	echo '<h3>Unit: '.$eud_unit_name.'</h3>';
-	echo '<p>Date: '.date("M d, Y H:i:s").' UTC</p>';
+	echo '<p>Date: '.date("M d, Y H:i:s",time()).' UTC</p>';
 	
 	// set up the invoice fee table
 	echo '<table border="1" cellpadding="6">';
-	echo '<tr><th>Event Name</th><th>Fee Amount</th></tr>';
+	echo '<tr><th>Event Name</th><th>Status</th><th>Fee Amount</th></tr>';
 	
 	// comment-out the next line to add rows to the table
 	//echo '</table>';	
@@ -148,7 +148,15 @@ Balance due:<br>
 				$ev_name = $event_array[$entry['what_event']][NAME];
 				//echo 'event:'.$ev_name.'<br>';
 				echo '<tr><td>'.$ev_name.'</td>';
-				$ev_fee = $event_array[$entry['what_event']][FEE];
+				$ev_status = $entry['entry_type'];
+				echo '<td>'.$ev_status.'</td>';
+				if ($ev_status === "COMPETING") {
+					// competing units pay the entry fee
+					$ev_fee = $event_array[$entry['what_event']][FEE];
+				} else {
+					// all host and exhibition units pay no fee
+					$ev_fee = 0;
+				}
 				//echo 'fee:'.$ev_fee.'<br>';
 				echo '<td>'.number_format($ev_fee,2).'</td><tr>';
 				$fee_total = $fee_total + $ev_fee;
@@ -160,9 +168,9 @@ Balance due:<br>
 		}
 	}
 	// add the membership fee
-	echo '<tr><td>Membership Fee</td><td>'.number_format(MEM_FEE,2).'</td></tr>';
+	echo '<tr><td>Membership Fee</td><td></td><td>'.number_format(MEM_FEE,2).'</td></tr>';
 	//echo 'total fee:'.$fee_total.'<br>';
-	echo '<tr><td><b>Total Fees Due</b></td><td><b> $'.number_format($fee_total + MEM_FEE, 2).'</b></td></tr>';
+	echo '<tr><td><b>Total Fees Due</b></td><td></td><td><b> $'.number_format($fee_total + MEM_FEE, 2).'</b></td></tr>';
 	echo '</table>';
 	echo '<br>';
 	

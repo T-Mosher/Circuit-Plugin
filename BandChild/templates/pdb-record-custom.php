@@ -68,10 +68,10 @@
   
   <?php $this->print_form_close() ?>
   <?php
-	echo "--- pdb-record-custom template starts here ---<br>";
+	//echo "--- pdb-record-custom template starts here ---<br>";
 	
-	echo "<h3>--------------------------<br>";
-	echo "Select your events below<br>then click on 'Save Events' button<br>";
+	echo "<h3>----------------------------------------------------<br>";
+	echo "Select your events below<br>then click on the 'Save Events' button<br>";
 	echo "at the page bottom.<br>";
 	echo "</h3>";
 	// this seems like a convenient dirty method for getting the private id
@@ -146,7 +146,7 @@
 	//print_r($response);
 	if (!empty($response)) {
 		// start a table
-		echo "<table>";
+		echo "<table border='1' cellpadding='3'>";
 		echo "<tr><th></th><th>Date</th><th>Event Name</th><th>Location</th></tr>";
 		foreach($response as $row) {	
 			//echo 'key:'.$row['event_id'].' Date:'.$row['event_date'].' Name:'.$row['event_name'].' Type:'.$row['event_type'].'<br>';
@@ -183,6 +183,8 @@
 	} else {
 		echo 'Sorry, found no events of this type.<br>';
 	}
+	echo '<br>';
+	
 	// note: do not change the value for the submit button - it is also hard-coded into custom-add-entries.php
 	echo '<input type="submit" name="submit" value="Save Events"/>'; 
 	echo '</form>';
@@ -196,10 +198,11 @@
 	// really should be able to do something better
 	//$priv_id = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : false;
 	
-	echo "<h3>--- Paying your fees ---</h3>";
-	echo "Will have link to invoice here<br>";
+	echo "<h3>--------------------------------<br>";
+	echo "--- Paying your fees ---</h3>";
+	
 	//echo "<a title=\"Fee Invoice\" href=\"http://nwapa.net/fee-invoice/?pid=".$priv_id."\">Click here for payment options.</a>";
-	echo "<a title=\"Fee Invoice\" href=\"/fee-invoice/?pid=".$priv_id."\">Click here for payment options.</a>";
+	echo "<a title=\"Fee Invoice\" href=\"/fee-invoice/?pid=".$priv_id."\">Click here for invoice and payment options.</a>";
 	echo "<br><br>";
   ?>
   
