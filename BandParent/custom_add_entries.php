@@ -9,8 +9,8 @@ global $wpdb;
 
 get_header();
 
-echo 'Info: custom_add_entries template - adds and updates records in the events table.<br><br>';
-// method is borrowed from "studentadded.php" tutorial
+//echo 'Info: custom_add_entries template - adds and updates records in the events table.<br><br>';
+//method is borrowed from "studentadded.php" tutorial
 
 // DEBUG
 // need some error checking...

@@ -69,6 +69,9 @@
   <?php $this->print_form_close() ?>
   <?php
 	//echo "--- pdb-record-custom template starts here ---<br>";
+	if (!is_user_logged_in()) {
+		die('<br>Event entries are not available yet.<br>');
+	} 	
 	
 	echo "<h3>----------------------------------------------------<br>";
 	echo "Select your events below<br>then click on the 'Save Events' button<br>";
