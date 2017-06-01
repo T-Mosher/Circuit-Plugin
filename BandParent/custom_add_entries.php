@@ -33,7 +33,7 @@ $part_id = Participants_Db::get_participant_id($_REQUEST['pid']);
 
 // get all of the fields of this record into an indexable array
 $part_id_fields = Participants_Db::get_participant($part_id);
-echo '<h3>========= Updating event entries for:'.$part_id_fields['unit_name'].' ========</h3>';
+echo '<br><h3>========= Updating event entries for: '.$part_id_fields['unit_name'].' ========</h3>';
 
 // DEBUG
 //var_dump($part_id_fields);
@@ -112,8 +112,8 @@ if ($event_response) {
 	//print_r($response);
 	
 	// create a results table
-	echo '<h4>Unit activity record</h4>';
-	echo '<table>';
+	echo '<br><h4>Unit activity record</h4>';
+	echo '<table border="1">';
 	echo '<tr><th>Activity</th><th>Event</th><th>Location</th></tr>';
 
 	foreach($event_response as $rsp) {
@@ -197,7 +197,7 @@ if ($event_response) {
 	// end the activity summary table
 	echo '</table>';
 	echo 'Note: if the activity record is blank, it means the unit has no entries in active events.<br>';
-	echo 'User your browser "Back" button to return to the unit information page<br>';
+	echo '<br><b>User your browser "Back" button</b> to return to the Unit Data page.<br>';
 } else {
 	echo "Found no active events for this unit type.<br>";
 }
