@@ -95,10 +95,21 @@ Balance due:<br>
 	// note: this query includes previous events which are now inactive
 	$query = "SELECT what_event, entry_type FROM entries WHERE what_participant = ".$eud_id;
 	$entry_response = $wpdb->get_results($query, ARRAY_A);
-
+	
+	// DEBUG
+	//echo '<br>dump of entries<br>';
+	//var_dump($entry_response);
+	//echo '<br>';
+	
 	// query the events database for all active events
 	$query = "SELECT event_id, event_name, event_entry_fee FROM events WHERE event_active = 'T' ORDER BY event_date";
+	//$query = "SELECT * FROM events WHERE event_active = 'T' ORDER BY event_date";
 	$event_response = $wpdb->get_results($query, ARRAY_A);
+	
+	// DEBUG
+	//echo '<br>dump of events<br>';
+	//var_dump($event_response);
+	//echo '<br>';
 	
 	// build the events into an associative array with event_id as the key, with name and fee as data
 	$event_array = array();
@@ -113,7 +124,7 @@ Balance due:<br>
 			//$event_array[] = ($row['event_id'] => $row['event_entry_fee']);
 		}
 	} else {
-		echo 'No event entries found for this unit.<br>';
+		echo 'No active events found.<br>';
 	}
 	
 	// DEBUG
