@@ -129,6 +129,9 @@ if ($event_response) {
 		// debugging
 		//var_dump($found);
 		
+		// define the log message
+		$log_text = 'Dummy text';
+		
 		// instead of testing for $found == FALSE, try checking if it is an integer or a BOOL
 		if (is_int($entered_this_event)) {
 			//echo "found this event<br>";
@@ -146,15 +149,17 @@ if ($event_response) {
 				//echo '<br>';
 				// error check the result code
 				if ($rslt != 1) {
-					echo 'Log Warning: ####### Unexpected delete result:'.$rslt.'<br>';
+					$log_text = 'Warning: Failure deleting entry from event:'.$rslt.' Event:'.$rsp['event_id'].' Unit:'.$part_id;
 					$fld1 = 'Err';
 				} else {
 					//echo 'one entry deleted<br>';
 					$fld1 = 'Delete';
+					$log_text = 'Deleted entry from event:'.$rslt.' Event:'.$rsp['event_id'].' Unit:'.$part_id;;
 				}
 			} else {
 				//echo "already entered - keep and do nothing<br>";
 				$fld1 = 'Keep';
+				$log_text = 'Kept event:'.$rsp['event_id'].' Unit:'.$part_id;
 			}
 			
 		} else {
@@ -176,10 +181,10 @@ if ($event_response) {
 				
 				// error-check the result code
 				if ($rslt != 1) {
-					echo 'Log Warning: ####### Failure adding entry to event<br>';
+					$log_text = 'Warning: Failure adding entry to event: rslt:'.$rslt.' id:'.$idd.' Event:'.$rsp['event_id'].' Unit:'.$part_id;;
 					$fld1 = 'Err:Add';
 				} else {
-					//echo 'entries added. New entry id is '.$idd.'<br>';
+					$log_text = 'Added entry to event. id:'.$idd.' Event:'.$rsp['event_id'].' Unit:'.$part_id;
 					$fld1 = 'Add';
 				}
 			} else {
@@ -191,6 +196,11 @@ if ($event_response) {
 		// output the row to the table
 		if (!empty($fld1)){
 			echo '<tr><td>'.$fld1.'</td><td>'.$rsp['event_name'].'</td><td>'.$rsp['event_location'].'</td></tr>';
+			// output the log text to the log table
+			$rslt = $wpdb->insert('nwapa_log', array('msg' => $log_text));
+			if($rslt != 1) {
+				echo '<br>warning: nwapa log update unsuccessful<br>';
+			}
 		}
 		
 	}
