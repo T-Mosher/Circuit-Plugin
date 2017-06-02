@@ -69,10 +69,10 @@ $exclude[] = 'secondary_contact_phone';
   
   <?php
   // here is the custome code to list the entries from the 'entries' table for this unit
-  // for now, only run this code if someone is logged-in
-  if(!is_user_logged_in()){
-    die('Entry list not supported yet...');
-  }
+  // un-comment these lines to only run this code if someone is logged-in
+  //if(!is_user_logged_in()){
+  //  die('Entry list not supported yet...');
+  //}
   
   global $wpdb;
   
