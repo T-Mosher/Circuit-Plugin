@@ -95,12 +95,26 @@
 
 	// query the hjk_participants_database table directly for this participant, 
 	//    so we can get the unit_type
-	$query = "SELECT * FROM hjk_participants_database WHERE id = ".$part_id;
+	
+	// build the correct participants database table name
+	$prefix = get_nwapa_settings('pdb_prefix');
+	// Debug
+	var_disp($prefix);
+	$query = "SELECT * FROM ".$prefix['val']."_participants_database WHERE id = ".$part_id;
 	$response = $wpdb->get_results($query, ARRAY_A);
-	foreach ($response as $row){
-		// this really needs some error checking...
-		//echo "unit type is: ".$row['unit_type']."<br>";
-		$unit_type = $row['unit_type'];
+	// Debug
+	var_disp($response);
+	if(!empty($response)) {
+		foreach ($response as $row){
+			// debug
+			var_disp($row);
+			// this really needs some error checking...
+			//echo "unit type is: ".$row['unit_type']."<br>";
+			$unit_type = $row['unit_type'];
+		}
+	} else {
+		echo '<br>Found no units in the participants database.<br>';
+		die();
 	}
 
 	// create a query for the this unit's entries 	

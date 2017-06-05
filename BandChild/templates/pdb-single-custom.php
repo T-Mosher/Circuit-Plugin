@@ -68,20 +68,22 @@ $exclude[] = 'secondary_contact_phone';
   <?php endwhile; // end of the groups loop ?>
   
   <?php
-  // here is the custome code to list the entries from the 'entries' table for this unit
-  // un-comment these lines to only run this code if someone is logged-in
-  //if(!is_user_logged_in()){
-  //  die('Entry list not supported yet...');
-  //}
+  // here is the custom code to list the entries from the 'entries' table for this unit
   
   global $wpdb;
   
   echo '<h4>Event Entries:</h4>';
-  
-  // DEBUG
-  //var_dump($id);
-  //echo '<br>';
 
+  $setting = get_nwapa_settings('allow_entries');
+  
+  if(strcmp($setting['val'], 'F') == 0) {
+	  echo '<br>'.$setting['msg'].'<br>';
+	  die();
+  } else {
+	  // Debug
+	  //echo '<br>Entries are open.<br>';
+  }
+  
   // get all of the fields of this record into an indexable array
   $part_id_fields = Participants_Db::get_participant($id);
   // DEBUG
